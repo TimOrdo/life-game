@@ -1,0 +1,10 @@
+C:\Users\DiRaven\source\repos\life_game\life_game\bin\Debug\life_game.exe.config
+C:\Users\DiRaven\source\repos\life_game\life_game\bin\Debug\life_game.exe
+C:\Users\DiRaven\source\repos\life_game\life_game\bin\Debug\life_game.pdb
+C:\Users\DiRaven\source\repos\life_game\life_game\obj\Debug\life_game.csprojAssemblyReference.cache
+C:\Users\DiRaven\source\repos\life_game\life_game\obj\Debug\life_game.fMain.resources
+C:\Users\DiRaven\source\repos\life_game\life_game\obj\Debug\life_game.Properties.Resources.resources
+C:\Users\DiRaven\source\repos\life_game\life_game\obj\Debug\life_game.csproj.GenerateResource.cache
+C:\Users\DiRaven\source\repos\life_game\life_game\obj\Debug\life_game.csproj.CoreCompileInputs.cache
+C:\Users\DiRaven\source\repos\life_game\life_game\obj\Debug\life_game.exe
+C:\Users\DiRaven\source\repos\life_game\life_game\obj\Debug\life_game.pdb
