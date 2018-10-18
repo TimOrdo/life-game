@@ -4,23 +4,58 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace life_game
 {
     public class World
     {
-        private int maxX = 640;
-        private int maxY = 480;
+        private int maxX;
+        private int maxY;
 
         private List<Colony> colonies = new List<Colony>();
         private Creature[,] creatures;
-        private Bitmap bitmap;
+        private PictureBox pb;
 
-        public World(System.Windows.Forms.PictureBox pBox)
+        public World(System.Windows.Forms.PictureBox pb)
         {
-            this.creatures = new Creature[this.maxX, this.maxY];
-            this.bitmap = new System.Drawing.Bitmap(this.maxX, this.maxY);
-            pBox.Image = bitmap;
+            maxX = pb.Width;
+            maxY = pb.Height;
+            creatures = new Creature[maxX, maxY];
+            pb.Image = new Bitmap(maxX, maxY);
+            this.pb = pb;
+        }
+
+        public void Tick(object sender, EventArgs e)
+        {
+            (pb.Image as Bitmap).SetPixel(5, 5, Color.Black);
+
+
+            var rnd = new Random();
+
+            var x = 0;
+            var y = 0;
+
+            x = rnd.Next(640);
+            y = rnd.Next(480);
+            SpawnColony(Color.Aqua, x, y, 100);
+
+            x = rnd.Next(640);
+            y = rnd.Next(480);
+            SpawnColony(Color.Orange, x, y, 100);
+
+            x = rnd.Next(640);
+            y = rnd.Next(480);
+            SpawnColony(Color.Red, x, y, 100);
+
+            x = rnd.Next(640);
+            y = rnd.Next(480);
+            SpawnColony(Color.Green, x, y, 100);
+
+            RenderFrame();
+
+            Console.WriteLine("Done!");
         }
 
         public void RenderFrame()
@@ -38,19 +73,20 @@ namespace life_game
                     {
                         color = Color.Black;
                     }
-                    this.bitmap.SetPixel(x, y, color);
+                    (pb.Image as Bitmap).SetPixel(x, y, color);
                 }
             }
+            pb.Refresh();
         }
 
         public Colony SpawnColony(Color color, int x, int y, int creaturesCount = 10)
         {
-            var colony = this.NewColony(color);
+            var colony = NewColony(color);
 
             for (int i = 0; i < creaturesCount; i++)
             {
                 var creature = colony.NewCreature();
-                if (!this.PutCreature(x, y, creature))
+                if (!PutCreature(x, y, creature))
                 {
                     colony.DelCreature(creature);
                 }
@@ -65,7 +101,7 @@ namespace life_game
         public Colony NewColony(Color color)
         {
             var colony = new Colony(this, color);
-            this.colonies.Add(colony);
+            colonies.Add(colony);
             return colony;
         }
 

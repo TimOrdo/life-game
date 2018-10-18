@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,39 +13,28 @@ namespace life_game
 {
     public partial class FMain : Form
     {
+
         public FMain()
         {
             InitializeComponent();
-        }
 
-        private void FMain_Load(object sender, EventArgs e)
-        {
-            var world = new World(PBWorld);
+            PictureBox pb = new PictureBox
+            {
+                Name = "PBWorld",
+                Location = new Point(0, 0),
+//                SizeMode = PictureBoxSizeMode.Zoom,
+                Size = new Size(640, 480),
+                //ImageLocation = @"C:\Users\DiRaven\Pictures\tmp.png"
+            };
 
-            var rnd = new Random();
+            this.Controls.Add(pb);
 
-            var x = 0;
-            var y = 0;
+            var world = new World(pb);
 
-            x = rnd.Next(640);
-            y = rnd.Next(480);
-            world.SpawnColony(Color.Aqua, x, y, 1000);
-
-            x = rnd.Next(640);
-            y = rnd.Next(480);
-            world.SpawnColony(Color.Orange, x, y, 1000);
-
-            x = rnd.Next(640);
-            y = rnd.Next(480);
-            world.SpawnColony(Color.Red, x, y, 1000);
-
-            x = rnd.Next(640);
-            y = rnd.Next(480);
-            world.SpawnColony(Color.Green, x, y, 1000);
-
-            world.RenderFrame();
-
-            Console.WriteLine("Done!");
+            var timer = new System.Windows.Forms.Timer();
+            timer.Interval = 100;
+            timer.Tick += new EventHandler(world.Tick);
+            timer.Start();
         }
     }
 }
