@@ -22,14 +22,14 @@ namespace life_game
             {
                 Name = "PBWorld",
                 Location = new Point(0, 0),
-//                SizeMode = PictureBoxSizeMode.Zoom,
                 Size = new Size(640, 480),
-                //ImageLocation = @"C:\Users\DiRaven\Pictures\tmp.png"
             };
 
             this.Controls.Add(pb);
 
             var world = new World(pb);
+
+            world.BigBang();
 
             var timer = new System.Windows.Forms.Timer();
             timer.Interval = 100;
